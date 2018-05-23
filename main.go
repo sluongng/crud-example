@@ -5,21 +5,33 @@ import (
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	_ "github.com/go-sql-driver/mysql"
 
 	"crud-example/handler"
+	"database/sql"
 )
 
 func rootHandler(c echo.Context) error {
-	return c.String(http.StatusOK, "Welcome to A sluong's experiment")
+	return c.String(http.StatusOK, "Welcome to User Service")
 }
 
 func main() {
 	e := echo.New()
 
 	e.Use(middleware.Logger())
+	e.Use(middleware.AddTrailingSlash())
 	e.Use(middleware.Recover())
 
-	h := &handler.Handler{}
+	// Database connection
+	// TODO: move DataSource name to flag()
+	db, err := sql.Open("mysql", "root:root@MyUserDb")
+	if err != nil {
+		e.Logger.Fatal(err)
+	}
+
+	// TODO: ensure migration is ran
+
+	h := &handler.Handler{DB: db}
 
 	e.GET("/", 		rootHandler)
 

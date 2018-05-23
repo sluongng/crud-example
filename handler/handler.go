@@ -1,12 +1,9 @@
 package handler
 
+import "database/sql"
+
 type (
 	Handler struct {
-		// TODO: add DB session
+		DB *sql.DB
 	}
-)
-
-const (
-	// TODO: add secret handling
-	Key = "secret"
 )
