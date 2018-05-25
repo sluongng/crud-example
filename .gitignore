@@ -3,7 +3,7 @@
 .vscode
 
 # Docker Database
-mysql/
+mysql/*
 !mysql/.gitkeep
 
 # Go Dep vendor
