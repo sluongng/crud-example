@@ -2,6 +2,10 @@
 .idea
 .vscode
 
+# Docker Database
+mysql/
+!mysql/.gitkeep
+
 # Go Dep vendor
 vendor
 
@@ -17,3 +21,4 @@ vendor
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+mysql/
