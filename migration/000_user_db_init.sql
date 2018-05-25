@@ -5,4 +5,3 @@ CREATE TABLE user_db.user
     email varchar(32) NOT NULL,
     website varchar(255)
 );
-INSERT INTO user_db.user (id, username, email, website) VALUES (1, 'Son Luong', 'sluongng@gmail.com', 'https://sluongng.gitlab.io');
