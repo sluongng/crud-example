@@ -23,7 +23,7 @@ func main() {
 	}))
 
 	// Database connection
-	db, err := sql.Open("mysql", "user:pass@tcp(localhost:3306)/user_db")
+	db, err := sql.Open("mysql", "user:pass@tcp(database:3306)/user_db")
 	if err != nil {
 		e.Logger.Fatal(err)
 	}

@@ -1,17 +1,17 @@
-FROM golang:1.10.2-alpine3.7 as builder
+FROM golang:1.10.2 as builder
 
-RUN apk add --no-cache curl git
-RUN curl -fsSL -o /usr/local/bin/dep https://github.com/golang/dep/releases/download/v0.4.1/dep-linux-amd64 && chmod +x /usr/local/bin/dep
+# Download and install the latest release of dep
+ADD https://github.com/golang/dep/releases/download/v0.4.1/dep-linux-amd64 /usr/bin/dep
+RUN chmod +x /usr/bin/dep
 
-RUN mkdir -p /go/src/github.com/sluongng/crud-example
-ADD . /go/src/github.com/sluongng/crud-example
-
-WORKDIR /go/src/github.com/sluongng/crud-example
-RUN dep ensure -vendor-only
-RUN go build -o /app main.go
+WORKDIR $GOPATH/src/github.com/sluongng/crud-example
+COPY Gopkg.toml Gopkg.lock ./
+RUN dep ensure --vendor-only
+COPY . ./
+RUN go build -a -installsuffix -o /app .
 
 
 FROM alpine:3.7
 EXPOSE 7001
-CMD ["./app"]
 COPY --from=builder /app .
+CMD ["./app"]
