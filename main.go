@@ -2,20 +2,14 @@ package main
 
 import (
 	"net/http"
+	"database/sql"
+	_ "github.com/go-sql-driver/mysql"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 
-	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
-
 	"github.com/sluongng/crud-example/handler"
-	"github.com/swaggo/echo-swagger"
 )
-
-func rootHandler(c echo.Context) error {
-	return c.String(http.StatusOK, "Welcome to User Service")
-}
 
 func main() {
 	e := echo.New()
@@ -23,29 +17,33 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.AddTrailingSlash())
 	e.Use(middleware.Recover())
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
+	}))
 
 	// Database connection
-	// TODO: move DataSource name to flag()
-	db, err := sql.Open("mysql", "root:root@MyUserDb")
+	db, err := sql.Open("mysql", "user:pass@tcp(database:3306)/user_db")
 	if err != nil {
 		e.Logger.Fatal(err)
 	}
+	defer db.Close()
 
 	// TODO: ensure migration is ran
 
 	h := &handler.Handler{DB: db}
 
 	// Root handler
-	e.GET("/", 		rootHandler)
-
-	// Swagger
-	e.GET("/swagger/*", echoSwagger.WrapHandler)
+	e.GET("/", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Welcome to User Service")
+	})
 
 	// User Service
+	e.POST("/user",		h.Signup)
 	e.GET("/user",			h.GetUserList)
 	e.GET("/user/:id",		h.GetUser)
-	e.POST("/user",		h.Signup)
 	e.PUT("/user",			h.UpdateUser)
+	e.DELETE("/user/:id",	h.DeleteUser)
 
 	e.Logger.Fatal(e.Start(":7001"))
 }
