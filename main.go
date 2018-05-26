@@ -28,9 +28,6 @@ func main() {
 		e.Logger.Fatal(err)
 	}
 	defer db.Close()
-
-	// TODO: ensure migration is ran
-
 	h := &handler.Handler{DB: db}
 
 	// Root handler
