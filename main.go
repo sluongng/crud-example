@@ -8,7 +8,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 
-	"crud-example/handler"
+	"github.com/sluongng/crud-example/handler"
 )
 
 func main() {

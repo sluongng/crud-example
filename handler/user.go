@@ -4,7 +4,7 @@ import (
 	"github.com/labstack/echo"
 	"net/http"
 	"fmt"
-	"crud-example/model"
+	"github.com/sluongng/crud-example/model"
 )
 
 func (h *Handler) Signup(c echo.Context) (err error) {

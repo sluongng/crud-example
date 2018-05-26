@@ -47,12 +47,6 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/sluongng/crud-example"
-  packages = ["handler"]
-  revision = "e25f4089a2f308ba655e8119f9182025d965144a"
-
-[[projects]]
-  branch = "master"
   name = "github.com/valyala/bytebufferpool"
   packages = ["."]
   revision = "e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7"
@@ -81,6 +75,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "4733d330fd2f13e45d8291f0086ad15d79246c4859adcb6d666a45ac2a03be52"
+  inputs-digest = "0546c2f494fcc703927763f57243ec1ab957c44bae827c4b8e0403118a65c9b7"
   solver-name = "gps-cdcl"
   solver-version = 1
