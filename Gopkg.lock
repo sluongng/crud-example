@@ -93,11 +93,14 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/sluongng/crud-example"
+  packages = ["docs"]
+  revision = "29455d33e3ac4e8c9f3e985aa9b5412066e733fd"
+
+[[projects]]
+  branch = "master"
   name = "github.com/swaggo/echo-swagger"
-  packages = [
-    ".",
-    "example/docs"
-  ]
+  packages = ["."]
   revision = "97f46bb9e5a5e9f57ebd6021e61d6174b6cfd973"
 
 [[projects]]
@@ -181,6 +184,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "afac6dd39b7d71b422c5a1859d2826386d4a6c7d30cfd2de68c22cfd125902ba"
+  inputs-digest = "70bbe7818649984023f63e325c22b0b7fcb1a5b9faa2dfcb1d2f93103b3c01cc"
   solver-name = "gps-cdcl"
   solver-version = 1
