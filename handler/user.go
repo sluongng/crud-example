@@ -5,7 +5,15 @@ import (
 	"net/http"
 )
 
-// Signup returns result of User signup process
+// Signup godoc
+// @Summary Creating new user
+// @Description Create new user
+// @Tags user
+// @Accept json
+// @Produce json
+// @Param user body model.NewUser true "user info"
+// @Success 200 {object} model.User
+// @Router /user [post]
 func (h *Handler) Signup(c echo.Context) (err error) {
 	return c.String(http.StatusOK, "Signup successful")
 }

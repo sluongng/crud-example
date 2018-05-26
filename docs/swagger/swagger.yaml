@@ -1,0 +1,63 @@
+definitions:
+  model.NewUser:
+    properties:
+      email:
+        example: sluongng@gmail.com
+        type: string
+      name:
+        example: Son Luong
+        type: string
+      website:
+        example: https://sluongng@gmail.com
+        type: string
+    type: object
+  model.User:
+    properties:
+      email:
+        example: sluongng@gmail.com
+        type: string
+      id:
+        example: 1
+        type: integer
+      name:
+        example: Son Luong
+        type: string
+      website:
+        example: https://sluongng@gmail.com
+        type: string
+    type: object
+info:
+  contact:
+    email: sluongng@gmail.com
+    name: Son Luong Ngoc
+    url: https://sluongng.gitlab.io/
+  description: This is a sample server User-service.
+  license: {}
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /user:
+    post:
+      consumes:
+      - application/json
+      description: Create new user
+      parameters:
+      - description: user info
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.NewUser'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+            type: object
+      summary: Creating new user
+      tags:
+      - user
+swagger: "2.0"
