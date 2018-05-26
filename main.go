@@ -12,7 +12,7 @@ import (
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 
-	"crud-example/handler"
+	"github.com/sluongng/crud-example/handler"
 )
 
 func rootHandler(c echo.Context) error {

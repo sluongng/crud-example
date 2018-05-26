@@ -94,7 +94,10 @@
 [[projects]]
   branch = "master"
   name = "github.com/sluongng/crud-example"
-  packages = ["docs"]
+  packages = [
+    "docs",
+    "handler"
+  ]
   revision = "29455d33e3ac4e8c9f3e985aa9b5412066e733fd"
 
 [[projects]]
@@ -184,6 +187,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "70bbe7818649984023f63e325c22b0b7fcb1a5b9faa2dfcb1d2f93103b3c01cc"
+  inputs-digest = "71317cecc3b8a76230527bbdd95c629aeb4ed611032b0699a46360879a9e0cdb"
   solver-name = "gps-cdcl"
   solver-version = 1
