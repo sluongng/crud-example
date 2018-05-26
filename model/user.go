@@ -2,15 +2,15 @@ package model
 
 type (
 	NewUser struct {
-		Name    string `json:"name" example:"Son Luong"`
-		Email   string `json:"email" example:"sluongng@gmail.com"`
-		Website string `json:"website" required:"false" example:"https://sluongng@gmail.com"`
+		Name    string `json:"name"`
+		Email   string `json:"email"`
+		Website string `json:"website" required:"false"`
 	}
 
 	User struct {
-		ID      int32  `json:"id" example:"1"`
-		Name    string `json:"name" example:"Son Luong"`
-		Email   string `json:"email" example:"sluongng@gmail.com"`
-		Website string `json:"website" example:"https://sluongng@gmail.com"`
+		ID      int32  `json:"id" db:"id"`
+		Name    string `json:"name" db:"username"`
+		Email   string `json:"email" db:"email"`
+		Website string `json:"website" db:"website"`
 	}
 )

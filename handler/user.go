@@ -4,6 +4,7 @@ import (
 	"github.com/labstack/echo"
 	"net/http"
 	"fmt"
+	"crud-example/model"
 )
 
 func (h *Handler) Signup(c echo.Context) (err error) {
@@ -19,15 +20,16 @@ func (h *Handler) GetUserList(c echo.Context) (err error) {
 func (h *Handler) GetUser(c echo.Context) (err error) {
 	userId := c.Param("id")
 
-	var username string
-	var email string
-	err = h.DB.QueryRow("SELECT * FROM user WHERE id = ?", userId).Scan(&username, &email)
+	var user model.User
+	err = h.DB.QueryRow("SELECT * FROM user WHERE id = ?", userId).
+		Scan(&user.ID, &user.Name, &user.Email, &user.Website)
+
 	if err != nil {
 		c.Logger().Errorf("Could not find user with id: %s", userId)
 		return err
 	}
 
-	return c.String(http.StatusOK, fmt.Sprintf("Username is %s and email is %s", username, email))
+	return c.String(http.StatusOK, fmt.Sprintf("Username is %s and email is %s", user.Name, user.Email))
 }
 
 // UpdateUser returns result of User update
