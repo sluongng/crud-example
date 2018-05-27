@@ -7,6 +7,8 @@ import (
 	"strconv"
 )
 
+// TODO: Signup
+// Signup creates a user in database
 func (h *Handler) Signup(c echo.Context) (err error) {
 	return c.String(http.StatusOK, "Signup successful")
 }
@@ -43,11 +45,13 @@ func (h *Handler) GetUser(c echo.Context) (err error) {
 	return c.JSON(http.StatusOK, user)
 }
 
+// TODO: UpdateUser
 // UpdateUser returns result of User update
 func (h *Handler) UpdateUser(c echo.Context) (err error) {
 	return c.String(http.StatusOK, "Updated User successful")
 }
 
+// TODO: DeleteUser
 // DeleteUser delete a user by id
 func (h *Handler) DeleteUser(c echo.Context) (err error) {
 	return c.String(http.StatusOK, "Deleted User successful")
