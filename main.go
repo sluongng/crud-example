@@ -7,6 +7,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"github.com/labstack/gommon/log"
 
 	"github.com/sluongng/crud-example/handler"
 )
@@ -14,6 +15,7 @@ import (
 func main() {
 	e := echo.New()
 	e.HideBanner = true
+	e.Logger.SetLevel(log.DEBUG)
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.RemoveTrailingSlash())
@@ -40,7 +42,7 @@ func main() {
 	// User Service
 	u := e.Group("/user")
 
-	u.POST("", h.Signup)
+	u.POST("", h.SignUp)
 	u.GET("", h.GetUserList)
 	u.GET("/:id", h.GetUser)
 	u.PUT("/:id", h.UpdateUser)
