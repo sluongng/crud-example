@@ -1,10 +1,10 @@
 package main
 
 import (
-	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 	"net/http"
 
+	"github.com/jmoiron/sqlx"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 
@@ -24,7 +24,7 @@ func main() {
 	}))
 
 	// Database connection
-	db, err := sql.Open("mysql", "user:pass@tcp(database:3306)/user_db")
+	db, err := sqlx.Open("mysql", "user:pass@tcp(localhost:3306)/user_db")
 	if err != nil {
 		e.Logger.Fatal(err)
 	}

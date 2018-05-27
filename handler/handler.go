@@ -1,9 +1,11 @@
 package handler
 
-import "database/sql"
+import (
+	"github.com/jmoiron/sqlx"
+)
 
 type (
 	Handler struct {
-		DB *sql.DB
+		DB *sqlx.DB
 	}
 )

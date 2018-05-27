@@ -14,6 +14,15 @@
   version = "v1.3.0"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/jmoiron/sqlx"
+  packages = [
+    ".",
+    "reflectx"
+  ]
+  revision = "2aeb6a910c2b94f2d5eb53d9895d80e27264ec41"
+
+[[projects]]
   name = "github.com/labstack/echo"
   packages = [
     ".",
@@ -75,6 +84,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "0546c2f494fcc703927763f57243ec1ab957c44bae827c4b8e0403118a65c9b7"
+  inputs-digest = "518dae858f8714fd9dcbd2afb17f9422f36ec313c44ca9d8579462786ea899a2"
   solver-name = "gps-cdcl"
   solver-version = 1

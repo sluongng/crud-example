@@ -1,0 +1,33 @@
+settings:
+  legacy:
+    force: false
+    interval: 0s
+server:
+  status: true
+  open: true
+  host: localhost
+  port: 5001
+schema:
+- name: crud-example
+  path: .
+  env:
+    database: localhost
+  commands:
+    vet: true
+    fmt:
+      status: true
+      args:
+      - -s
+      - -w
+    run:
+      status: true
+  watcher:
+    extensions:
+    - go
+    paths:
+    - /
+    ignored_paths:
+    - .git
+    - vendor
+    - mysql
+    - migration

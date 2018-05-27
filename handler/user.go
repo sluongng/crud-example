@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"fmt"
 	"github.com/labstack/echo"
 	"github.com/sluongng/crud-example/model"
 	"net/http"
+	"strconv"
 )
 
 func (h *Handler) Signup(c echo.Context) (err error) {
@@ -18,18 +18,20 @@ func (h *Handler) GetUserList(c echo.Context) (err error) {
 
 // GetUser returns a User
 func (h *Handler) GetUser(c echo.Context) (err error) {
-	userId := c.Param("id")
+	userId, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.Logger().Errorf("Invalid ID given: %s", userId)
+		return err
+	}
 
-	var user model.User
-	err = h.DB.QueryRow("SELECT * FROM user WHERE id = ?", userId).
-		Scan(&user.ID, &user.Name, &user.Email, &user.Website)
-
+	user := new(model.User)
+	err = h.DB.Get(&user, "SELECT * FROM user WHERE id = ?", userId)
 	if err != nil {
 		c.Logger().Errorf("Could not find user with id: %s", userId)
 		return err
 	}
 
-	return c.String(http.StatusOK, fmt.Sprintf("Username is %s and email is %s", user.Name, user.Email))
+	return c.JSON(http.StatusOK, user)
 }
 
 // UpdateUser returns result of User update
