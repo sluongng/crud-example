@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net/http"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
+	"net/http"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -13,9 +13,10 @@ import (
 
 func main() {
 	e := echo.New()
+	e.HideBanner = true
 
 	e.Use(middleware.Logger())
-	e.Use(middleware.AddTrailingSlash())
+	e.Use(middleware.RemoveTrailingSlash())
 	e.Use(middleware.Recover())
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
@@ -36,11 +37,13 @@ func main() {
 	})
 
 	// User Service
-	e.POST("/user",		h.Signup)
-	e.GET("/user",			h.GetUserList)
-	e.GET("/user/:id",		h.GetUser)
-	e.PUT("/user",			h.UpdateUser)
-	e.DELETE("/user/:id",	h.DeleteUser)
+	u := e.Group("/user")
+
+	u.POST("", h.Signup)
+	u.GET("", h.GetUserList)
+	u.GET("/:id", h.GetUser)
+	u.PUT("/:id", h.UpdateUser)
+	u.DELETE("/:id", h.DeleteUser)
 
 	e.Logger.Fatal(e.Start(":7001"))
 }

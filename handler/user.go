@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"github.com/labstack/echo"
-	"net/http"
 	"fmt"
+	"github.com/labstack/echo"
 	"github.com/sluongng/crud-example/model"
+	"net/http"
 )
 
 func (h *Handler) Signup(c echo.Context) (err error) {
