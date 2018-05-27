@@ -13,11 +13,20 @@ func (h *Handler) Signup(c echo.Context) (err error) {
 
 // GetUserList returns a list of Users
 func (h *Handler) GetUserList(c echo.Context) (err error) {
-	return c.String(http.StatusOK, "Get some User")
+
+	userList := new([]model.User)
+	err = h.DB.Select(userList, "SELECT * FROM user LIMIT 100")
+	if err != nil {
+		c.Logger().Errorf("Error getting user list")
+		return err
+	}
+
+	return c.JSON(http.StatusOK, userList)
 }
 
 // GetUser returns a User
 func (h *Handler) GetUser(c echo.Context) (err error) {
+
 	userId, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		c.Logger().Errorf("Invalid ID given: %s", userId)
