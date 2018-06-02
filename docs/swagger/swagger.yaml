@@ -1,0 +1,106 @@
+definitions:
+  model.User:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      website:
+        type: string
+    type: object
+info:
+  contact:
+    email: sluongng@gmail.com
+    name: Son Luong
+    url: https://sluongng.gitlab.io/
+  description: A CRUD test for best practices in Golang
+  license: {}
+  title: CRUD example API
+  version: "0.1"
+paths:
+  /user:
+    get:
+      description: get list of current users from Database
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.User'
+            type: array
+      summary: get list of users
+      tags:
+      - User
+    post:
+      description: create a new user to DB
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: create user
+      tags:
+      - User
+  /user/{id}:
+    delete:
+      description: Delete a user by id
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Delete a user
+      tags:
+      - User
+    get:
+      description: Get a user by id
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+            type: object
+      summary: get 1 user detail
+      tags:
+      - User
+    put:
+      description: update a user by id
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Update a user's detail
+      tags:
+      - User
+swagger: "2.0"

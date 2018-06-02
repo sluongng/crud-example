@@ -11,12 +11,25 @@ import (
 )
 
 // TODO: SignUp
-// SignUp creates a user in database
+
+// SignUp godoc
+// @Summary create user
+// @Description create a new user to DB
+// @Tags User
+// @Produce plain
+// @Success 200 {string} string
+// @Router /user [post]
 func (h *Handler) SignUp(c echo.Context) (err error) {
 	return c.String(http.StatusOK, "SignUp successful")
 }
 
-// GetUserList returns a list of Users
+// GetUserList godoc
+// @Summary get list of users
+// @Description get list of current users from Database
+// @Tags User
+// @Produce json
+// @Success 200 {array} model.User
+// @Router /user [get]
 func (h *Handler) GetUserList(c echo.Context) (err error) {
 	query, _, _ := sq.Select("*").
 		From("user").
@@ -34,7 +47,14 @@ func (h *Handler) GetUserList(c echo.Context) (err error) {
 	return c.JSON(http.StatusOK, userList)
 }
 
-// GetUser returns a User
+// GetUser godoc
+// @Summary get 1 user detail
+// @Description Get a user by id
+// @Tags User
+// @Produce json
+// @Param id path int true "User ID"
+// @Success 200 {object} model.User
+// @Router /user/{id} [get]
 func (h *Handler) GetUser(c echo.Context) (err error) {
 
 	userId, err := strconv.Atoi(c.Param("id"))
@@ -61,13 +81,27 @@ func (h *Handler) GetUser(c echo.Context) (err error) {
 }
 
 // TODO: UpdateUser
-// UpdateUser returns result of User update
+// UpdateUser godoc
+// @Summary Update a user's detail
+// @Description update a user by id
+// @Tags User
+// @Produce plain
+// @Param id path int true "User ID"
+// @Success 200 {string} string
+// @Router /user/{id} [put]
 func (h *Handler) UpdateUser(c echo.Context) (err error) {
 	return c.String(http.StatusOK, "Updated User successful")
 }
 
 // TODO: DeleteUser
-// DeleteUser delete a user by id
+// DeleteUser godoc
+// @Summary Delete a user
+// @Description Delete a user by id
+// @Tags User
+// @Produce plain
+// @Param id path int true "User ID"
+// @Success 200 {string} string
+// @Router /user/{id} [delete]
 func (h *Handler) DeleteUser(c echo.Context) (err error) {
 	return c.String(http.StatusOK, "Deleted User successful")
 }

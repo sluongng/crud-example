@@ -8,10 +8,20 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"github.com/labstack/gommon/log"
+	"github.com/swaggo/echo-swagger"
+
+	_ "github.com/sluongng/crud-example/docs"
 
 	"github.com/sluongng/crud-example/handler"
 )
 
+// @title CRUD example API
+// @version 0.1
+// @description A CRUD test for best practices in Golang
+
+// @contact.name Son Luong
+// @contact.url https://sluongng.gitlab.io/
+// @contact.email sluongng@gmail.com
 func main() {
 	e := echo.New()
 	e.HideBanner = true
@@ -38,6 +48,9 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Welcome to User Service")
 	})
+
+	// Swagger handler
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
 	// User Service
 	u := e.Group("/user")
