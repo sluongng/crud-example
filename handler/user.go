@@ -4,15 +4,15 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/labstack/echo"
 	sq "github.com/Masterminds/squirrel"
+	"github.com/labstack/echo"
 
 	"github.com/sluongng/crud-example/model"
 )
 
 // TODO: SignUp
 
-// SignUp godoc
+// SignUp go doc
 // @Summary create user
 // @Description create a new user to DB
 // @Tags User
@@ -23,7 +23,7 @@ func (h *Handler) SignUp(c echo.Context) (err error) {
 	return c.String(http.StatusOK, "SignUp successful")
 }
 
-// GetUserList godoc
+// GetUserList go doc
 // @Summary get list of users
 // @Description get list of current users from Database
 // @Tags User
@@ -47,7 +47,7 @@ func (h *Handler) GetUserList(c echo.Context) (err error) {
 	return c.JSON(http.StatusOK, userList)
 }
 
-// GetUser godoc
+// GetUser go doc
 // @Summary get 1 user detail
 // @Description Get a user by id
 // @Tags User
@@ -81,7 +81,7 @@ func (h *Handler) GetUser(c echo.Context) (err error) {
 }
 
 // TODO: UpdateUser
-// UpdateUser godoc
+// UpdateUser go doc
 // @Summary Update a user's detail
 // @Description update a user by id
 // @Tags User
@@ -94,7 +94,7 @@ func (h *Handler) UpdateUser(c echo.Context) (err error) {
 }
 
 // TODO: DeleteUser
-// DeleteUser godoc
+// DeleteUser go doc
 // @Summary Delete a user
 // @Description Delete a user by id
 // @Tags User

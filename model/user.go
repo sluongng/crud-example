@@ -8,7 +8,7 @@ type (
 	}
 
 	User struct {
-		ID      int32  `json:"id" db:"id"`
+		ID int32 `json:"id" db:"id"`
 		NewUser
 	}
 )

@@ -8,7 +8,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"github.com/labstack/gommon/log"
-	"github.com/swaggo/echo-swagger"
+	"github.com/sluongng/echo-swagger"
 
 	_ "github.com/sluongng/crud-example/docs"
 
@@ -45,9 +45,7 @@ func main() {
 	h := &handler.Handler{DB: db}
 
 	// Root handler
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Welcome to User Service")
-	})
+	e.GET("/", rootHandler)
 
 	// Swagger handler
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
@@ -62,4 +60,15 @@ func main() {
 	u.DELETE("/:id", h.DeleteUser)
 
 	e.Logger.Fatal(e.Start(":7001"))
+}
+
+// rootHandler go doc
+// @Summary Root handler
+// @Description Return general service information
+// @Tags General
+// @Produce plain
+// @Success 200 {string} string
+// @Router / [get]
+func rootHandler(c echo.Context) error {
+	return c.String(http.StatusOK, "Welcome to User Service")
 }

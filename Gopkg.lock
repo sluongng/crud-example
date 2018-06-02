@@ -120,6 +120,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/sluongng/echo-swagger"
+  packages = ["."]
+  revision = "2c1bd19f577d412a491466bb61c203097a71ff54"
+
+[[projects]]
+  branch = "master"
   name = "github.com/swaggo/echo-swagger"
   packages = ["."]
   revision = "97f46bb9e5a5e9f57ebd6021e61d6174b6cfd973"
@@ -205,6 +211,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "71ec175f7cc6c9cff7747d19319b2a55a528281ef3015908eecf921a5e40af1c"
+  inputs-digest = "d3eda128c5bfac1efb5a9b18c24611e2d0a2570de769bd0b0432453cd8b82726"
   solver-name = "gps-cdcl"
   solver-version = 1

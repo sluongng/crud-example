@@ -15,11 +15,24 @@ info:
     email: sluongng@gmail.com
     name: Son Luong
     url: https://sluongng.gitlab.io/
-  description: A CRUD test for best practices in Golang
+  description: Return general service information
   license: {}
   title: CRUD example API
   version: "0.1"
 paths:
+  /:
+    get:
+      description: Return general service information
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Root handler
+      tags:
+      - General
   /user:
     get:
       description: get list of current users from Database
